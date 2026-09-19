@@ -1,0 +1,14 @@
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/systempaq/SistemaPaquetes.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/systempaq/exceptions/IllegalOrphanException.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/systempaq/exceptions/NonexistentEntityException.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/systempaq/exceptions/PreexistingEntityException.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/util/JpaUtil.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/util/PequetesDataJpaController.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/util/UsuariosJpaController.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/util/exceptions/IllegalOrphanException.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/util/exceptions/NonexistentEntityException.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/util/exceptions/PreexistingEntityException.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/paquetes/Paquetes.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/paquetes/PequetesData.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/user/Roles.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/user/Usuarios.java

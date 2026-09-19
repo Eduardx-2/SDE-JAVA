@@ -1,0 +1,14 @@
+paquetes/PequetesData.class
+com/systempaq/exceptions/NonexistentEntityException.class
+com/util/PequetesDataJpaController.class
+com/util/JpaUtil.class
+user/Usuarios.class
+com/util/exceptions/PreexistingEntityException.class
+com/util/UsuariosJpaController.class
+paquetes/Paquetes.class
+user/Roles.class
+com/systempaq/exceptions/IllegalOrphanException.class
+com/util/exceptions/IllegalOrphanException.class
+com/util/exceptions/NonexistentEntityException.class
+com/systempaq/exceptions/PreexistingEntityException.class
+com/systempaq/SistemaPaquetes.class
