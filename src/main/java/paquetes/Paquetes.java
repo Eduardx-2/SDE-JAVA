@@ -7,6 +7,7 @@ package paquetes;
 import com.util.JpaUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import java.util.List;
 import java.util.Scanner;
 import user.Usuarios;
 import paquetes.Codigo;
@@ -70,8 +71,14 @@ public class Paquetes {
     //función para consultar paquetes
     public static void consultarMispaquetes(int id){
         System.out.println("------------- PAQUETES -------------");
-        PaquetesData paq = sqlPaquetes(id); 
-        System.out.println(paq.toString());
+        List<PaquetesData> paquetes = sqlPaquetes(id);
+        if (paquetes.isEmpty()) {
+            System.out.println("No hay paquetes registrados.");
+            return;
+        }
+        for (PaquetesData paq : paquetes) {
+            System.out.println(paq.toString());
+        }
     }
     
     // funcion que busca paquetes del usuarios por medio del codigo
@@ -121,7 +128,7 @@ public class Paquetes {
         }
     }
     
-    private static PaquetesData sqlPaquetes(int id){
+    private static List<PaquetesData> sqlPaquetes(int id){
         EntityManager manager = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {
             TypedQuery<PaquetesData> userQuery = manager.createQuery(
@@ -129,7 +136,7 @@ public class Paquetes {
                     PaquetesData.class
             );
             userQuery.setParameter("id_usuario", id);
-            return userQuery.getResultStream().findFirst().orElse(null);
+            return userQuery.getResultList();
         }finally{
             manager.close();
         }

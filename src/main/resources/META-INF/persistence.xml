@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>user.Usuarios</class>
     <class>paquetes.PaquetesData</class>
+    <class>envios.EnviosDb</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>

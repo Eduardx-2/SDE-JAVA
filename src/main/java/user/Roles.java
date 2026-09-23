@@ -10,8 +10,7 @@ package user;
  */
 public enum Roles {
     ADMIN(1,"ADMIN"),
-    USER(2,"USER"),
-    CLIENTE(3,"CLIENTE");
+    USER(2,"USER");
     
     private final int role;
     private final String value;

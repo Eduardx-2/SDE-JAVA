@@ -10,6 +10,8 @@
 /home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/util/exceptions/IllegalOrphanException.java
 /home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/util/exceptions/NonexistentEntityException.java
 /home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/com/util/exceptions/PreexistingEntityException.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/envios/Envios.java
+/home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/envios/EnviosDb.java
 /home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/paquetes/Codigo.java
 /home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/paquetes/Paquetes.java
 /home/eduardx_2/Documentos/SistemaPaquetes/src/main/java/paquetes/PaquetesData.java
