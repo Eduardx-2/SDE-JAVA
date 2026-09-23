@@ -3,7 +3,7 @@
   <persistence-unit name="SistemaPaquetesPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>user.Usuarios</class>
-    <class>paquetes.PequetesData</class>
+    <class>paquetes.PaquetesData</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>

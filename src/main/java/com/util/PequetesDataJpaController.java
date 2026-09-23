@@ -14,7 +14,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import java.util.List;
-import paquetes.PequetesData;
+import paquetes.PaquetesData;
 
 /**
  *
@@ -31,7 +31,7 @@ public class PequetesDataJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(PequetesData pequetesData) throws PreexistingEntityException, Exception {
+    public void create(PaquetesData pequetesData) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -50,7 +50,7 @@ public class PequetesDataJpaController implements Serializable {
         }
     }
 
-    public void edit(PequetesData pequetesData) throws NonexistentEntityException, Exception {
+    public void edit(PaquetesData pequetesData) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -78,9 +78,9 @@ public class PequetesDataJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            PequetesData pequetesData;
+            PaquetesData pequetesData;
             try {
-                pequetesData = em.getReference(PequetesData.class, id);
+                pequetesData = em.getReference(PaquetesData.class, id);
                 pequetesData.getCodigo();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The pequetesData with id " + id + " no longer exists.", enfe);
@@ -94,19 +94,19 @@ public class PequetesDataJpaController implements Serializable {
         }
     }
 
-    public List<PequetesData> findPequetesDataEntities() {
+    public List<PaquetesData> findPequetesDataEntities() {
         return findPequetesDataEntities(true, -1, -1);
     }
 
-    public List<PequetesData> findPequetesDataEntities(int maxResults, int firstResult) {
+    public List<PaquetesData> findPequetesDataEntities(int maxResults, int firstResult) {
         return findPequetesDataEntities(false, maxResults, firstResult);
     }
 
-    private List<PequetesData> findPequetesDataEntities(boolean all, int maxResults, int firstResult) {
+    private List<PaquetesData> findPequetesDataEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(PequetesData.class));
+            cq.select(cq.from(PaquetesData.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -118,10 +118,10 @@ public class PequetesDataJpaController implements Serializable {
         }
     }
 
-    public PequetesData findPequetesData(String id) {
+    public PaquetesData findPequetesData(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(PequetesData.class, id);
+            return em.find(PaquetesData.class, id);
         } finally {
             em.close();
         }
@@ -131,7 +131,7 @@ public class PequetesDataJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<PequetesData> rt = cq.from(PequetesData.class);
+            Root<PaquetesData> rt = cq.from(PaquetesData.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

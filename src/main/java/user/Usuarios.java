@@ -32,7 +32,7 @@ public class Usuarios implements Serializable {
     private String pass;
     
     @Enumerated(EnumType.STRING)
-    private Roles rolUser;
+    private Roles rol;
     
     protected Usuarios(){
         
@@ -44,7 +44,7 @@ public class Usuarios implements Serializable {
         this.correo = correo;
         this.telefono = telefono;
         this.pass = pass;
-        this.rolUser = rolUser;
+        this.rol = rolUser;
     }
 
     public int getId_usuario() {
@@ -98,11 +98,11 @@ public class Usuarios implements Serializable {
     }
 
     public Roles getRolUser() {
-        return rolUser;
+        return rol;
     }
 
-    public void setRolUser(Roles rolUser) {
-        this.rolUser = rolUser;
+    public void setRolUser(Roles rol) {
+        this.rol = rol;
     }
 
    

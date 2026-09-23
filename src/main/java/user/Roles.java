@@ -30,6 +30,14 @@ public enum Roles {
         return value;
     }
     
+    public static String verificationsUser(String user){
+        for (Roles rol: Roles.values()){
+            if(rol.value == null ? user == null : rol.value.equals(user)){
+                return rol.value;
+            }
+        }
+        return null;
+    }
     
     public static Roles verification_asset(int co){
         for(Roles rol: Roles.values()){
