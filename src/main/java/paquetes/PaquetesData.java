@@ -127,7 +127,6 @@ public class PaquetesData implements Serializable {
         this.valor = valor;
     }
 
-
     public String getDescripcion() {
         return descripcion;
     }

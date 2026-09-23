@@ -46,6 +46,24 @@ public class Login {
         }
     }
     
+    private static void menu_admin(int userId){
+        int opciones;
+        System.out.println("----------- Administrador Menu-------------");
+        System.out.print("1- Registrar Paquetes\n2 - Eliminar Paquetes\n3 - Buscar paquetes\n\nSeleccióne una opción: ");
+        opciones = using_input.nextInt();
+        switch(opciones){
+            case 1: 
+                Paquetes.registered_data_package(userId);
+                break;
+            case 2:
+                Paquetes.consultarMispaquetes(userId);
+                break;
+            case 3:
+                Paquetes.buscarMispaquetes();
+                break;
+        }
+    }
+    
     public static void login_session_data() throws NoSuchAlgorithmException, InvalidKeySpecException{
         String user;
         Console consol = System.console();
@@ -60,8 +78,10 @@ public class Login {
         }
         boolean checkpass = checkOnpass(passwordUser,dat.getPass());
         if (checkpass == true){
-            if (Roles.verificationsUser(String.valueOf(dat.getRolUser())).equals("USER")){
+            if (Roles.verificationsUser(String.valueOf(dat.getRolUser())).equals("USER")){ //si es rol usuario despligue el menu usuario
                 menu_user_(dat.getId_usuario());
+            }else if(Roles.verificationsUser(String.valueOf(dat.getRolUser())).equals("ADMIN")){
+                
             }
         }else{
             System.out.println("[-] Contraseña Invalida");

@@ -28,7 +28,7 @@ public class Paquetes {
         float valor;
         System.out.println("----------------Registro de Paquetes------------------");
         System.out.println("Descripción");
-        descripcion = scan_text.next();
+        descripcion = scan_text.nextLine();
         System.out.println("Peso: ");
         peso = scan_text.nextFloat();
         System.out.println("Largo: ");
@@ -44,13 +44,14 @@ public class Paquetes {
         
     }
     
-    
+    //función para consultar paquetes
     public static void consultarMispaquetes(int id){
         System.out.println("------------- PAQUETES -------------");
         PaquetesData paq = sqlPaquetes(id); 
         System.out.println(paq.toString());
     }
     
+    // funcion que busca paquetes del usuarios por medio del codigo
     public static void buscarMispaquetes(){
         String codigo;
         System.out.println("------------Busqueda de Codigo por paquete-------------");
@@ -58,8 +59,9 @@ public class Paquetes {
         codigo = scan_text.next();
         PaquetesData paq = sqlSearchPaquetes(codigo);
         System.out.println(paq.toString()); 
-   }
+    }
     
+    // se conecta a la base de datos y inserta el paquete a registrar
     public static void userCreatePaquetes(PaquetesData paquetes) {
         EntityManager manager = JpaUtil.getEntityManagerFactory().createEntityManager();
 
@@ -81,6 +83,7 @@ public class Paquetes {
         }
     }
     
+    //JPQL para buscar el paquete median el codigo
     private static PaquetesData sqlSearchPaquetes(String id){
         EntityManager manager = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {
@@ -88,7 +91,7 @@ public class Paquetes {
                     "SELECT u FROM PaquetesData u WHERE u.codigo = :codigo",
                     PaquetesData.class
             );
-            userQuery.setParameter("codigo", id);
+            userQuery.setParameter("codigo", id); //ingresa el valor id recibido en el campo :codigo
             return userQuery.getResultStream().findFirst().orElse(null);
         }finally{
             manager.close();
