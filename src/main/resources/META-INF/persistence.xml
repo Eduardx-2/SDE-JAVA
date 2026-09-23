@@ -10,7 +10,7 @@
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/paquetes_system"/>
       <property name="jakarta.persistence.jdbc.user" value="eduardx"/>
       <property name="jakarta.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
-      <property name="jakarta.persistence.jdbc.password" value="eduArd012345$6"/>
+      <property name="jakarta.persistence.jdbc.password" value=""/>
     </properties>
   </persistence-unit>
 </persistence>
