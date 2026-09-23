@@ -29,10 +29,25 @@ public class SistemaPaquetes {
     private static Scanner input = new Scanner(System.in);
     
     public static void main(String[] args) {
+        int opt_account = 0;
+        System.out.println("-------------- Bienvenido ----------------");
+        System.out.println("1 - Inicie Sessión\n2 - Registrate\n"); 
+        System.out.print("Ingrese una opción #: ");
+        opt_account = input.nextInt();
         try {
+                        
             smokeEntityManager();
-            Login.login_session_data();
-            //user_data();
+            
+            switch(opt_account){            
+                case 1 -> Login.login_session_data();
+                case 2 -> user_data();
+                default -> {
+                    System.out.println("Opción invalida.");
+                }
+
+            }
+
+          
         } catch (NoSuchAlgorithmException | InvalidKeySpecException d) {
             System.out.println(d.getMessage());
         } finally {
@@ -54,11 +69,10 @@ public class SistemaPaquetes {
     
     // registrar usuarios
     private static void user_data() throws NoSuchAlgorithmException, InvalidKeySpecException{
-        String nombre = "";
+        String nombre;
         String apellido;
         String correo;
         String telefono;
-        int rol;
         Console consol = System.console();
         if (consol == null){
             System.out.println("Fallo: Sin consola disponible");
@@ -82,10 +96,8 @@ public class SistemaPaquetes {
             System.out.println("Su contraseña es muy corta.");
             return;
         }
-        System.out.println("Rol: ");
-        rol = input.nextInt();
         String data_password = Login.cifradate_pkbd(passwordUser);
-        Roles rolDb = Roles.verification_asset(rol); //toma un rol apartir de un numero, y asigna ese rol
+        Roles rolDb = Roles.verification_asset(1); //toma un rol apartir de un numero, y asigna ese rol
         Usuarios userCreate = new Usuarios(nombre.toLowerCase(),apellido.toLowerCase(),correo,telefono,data_password,rolDb); //crea el objeto usuario
         userCreateSession(userCreate); //insertar los datos del usuario
 

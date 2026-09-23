@@ -4,6 +4,7 @@
  */
 package com.systempaq;
 
+import static com.systempaq.SistemaPaquetes.userCreateSession;
 import com.util.JpaUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -28,39 +29,75 @@ public class Login {
     
     private static final Scanner using_input = new Scanner(System.in);
     
+    
+    private static void user_data() throws NoSuchAlgorithmException, InvalidKeySpecException{
+        String nombre;
+        String apellido;
+        String correo;
+        String telefono;
+        int rol;
+        Console consol = System.console();
+        if (consol == null){
+            System.out.println("Fallo: Sin consola disponible");
+            return;
+        }
+        System.out.println("---------------------- Registro de usuarios ----------------------\n");
+        System.out.println("Nombre: ");
+        nombre = using_input.nextLine();
+        System.out.println("Apellido: ");
+        apellido = using_input.nextLine();
+        System.out.println("Correo: ");
+        correo = using_input.next();
+        if (!CheckOn.emailCheck(correo)){
+            System.out.println("Correo Invalido.");
+            return;
+        }
+        System.out.println("Telefono: ");
+        telefono = using_input.next();
+        char[] passwordUser = consol.readPassword("Contraseña: ");
+        if (passwordUser.length < 8){
+            System.out.println("Su contraseña es muy corta.");
+            return;
+        }
+        System.out.println("Rol: ");
+        rol = using_input.nextInt();
+        String data_password = Login.cifradate_pkbd(passwordUser);
+        Roles rolDb = Roles.verification_asset(rol); //toma un rol apartir de un numero, y asigna ese rol
+        Usuarios userCreate = new Usuarios(nombre.toLowerCase(),apellido.toLowerCase(),correo,telefono,data_password,rolDb); //crea el objeto usuario
+        userCreateSession(userCreate); //insertar los datos del usuario  
+      
+    }
     private static void menu_user_(int userId){
         int opciones;
         System.out.println("----------- Usuarios Menu-------------");
         System.out.print("1- Registrar Paquetes\n2 - Ver mis Paquetes\n3 - Buscar mi paquete\n\nSeleccióne una opción: ");
         opciones = using_input.nextInt();
         switch(opciones){
-            case 1: 
-                Paquetes.registered_data_package(userId);
-                break;
-            case 2:
-                Paquetes.consultarMispaquetes(userId);
-                break;
-            case 3:
-                Paquetes.buscarMispaquetes();
-                break;
+            case 1 -> Paquetes.registered_data_package(userId);
+            case 2 -> Paquetes.consultarMispaquetes(userId);
+            case 3 -> Paquetes.buscarMispaquetes();
+            default -> System.out.println("Ingreso una opción no valida");
         }
     }
     
     private static void menu_admin(int userId){
         int opciones;
         System.out.println("----------- Administrador Menu-------------");
-        System.out.print("1- Registrar Paquetes\n2 - Eliminar Paquetes\n3 - Buscar paquetes\n\nSeleccióne una opción: ");
+        System.out.print("1- Registrar Paquetes\n2 - Eliminar Paquetes\n3 - Buscar paquetes\n4 - Crear Usuarios\nSeleccióne una opción: ");
         opciones = using_input.nextInt();
         switch(opciones){
-            case 1: 
-                Paquetes.registered_data_package(userId);
-                break;
-            case 2:
-                Paquetes.consultarMispaquetes(userId);
-                break;
-            case 3:
-                Paquetes.buscarMispaquetes();
-                break;
+            case 1 -> Paquetes.registered_data_package(userId);
+            case 2 -> Paquetes.eliminated_paquetes();
+            case 3 -> Paquetes.buscarMispaquetes();
+                
+            case 4 -> {
+                try {
+                    user_data();
+                }catch(NoSuchAlgorithmException | InvalidKeySpecException e){
+                    e.printStackTrace();
+                }
+            }
+            default -> System.out.println("Opción no válida.");
         }
     }
     
@@ -79,9 +116,9 @@ public class Login {
         boolean checkpass = checkOnpass(passwordUser,dat.getPass());
         if (checkpass == true){
             if (Roles.verificationsUser(String.valueOf(dat.getRolUser())).equals("USER")){ //si es rol usuario despligue el menu usuario
-                menu_user_(dat.getId_usuario());
+                menu_user_(dat.getId_usuario());//ENVIA EL ID DEL USUARIO
             }else if(Roles.verificationsUser(String.valueOf(dat.getRolUser())).equals("ADMIN")){
-                
+                menu_admin(dat.getId_usuario());
             }
         }else{
             System.out.println("[-] Contraseña Invalida");

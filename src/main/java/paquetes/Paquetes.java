@@ -44,6 +44,29 @@ public class Paquetes {
         
     }
     
+    public static void eliminated_paquetes(){
+        String code;
+        System.out.println("---------- Eliminar Paquete ----------\n");
+        System.out.print("Codigo de Paquete: ");
+        code = scan_text.next();
+        EntityManager manager = JpaUtil.getEntityManagerFactory().createEntityManager(); 
+        try { 
+            manager.getTransaction().begin(); 
+            String jpql = "DELETE FROM PaquetesData u WHERE u.codigo = :codigo"; 
+            int filas = manager.createQuery(jpql).setParameter("codigo", code) .executeUpdate(); 
+            manager.getTransaction().commit(); 
+            if (filas > 0) { 
+                System.out.println("Paquete eliminado"); 
+            } else { 
+                System.out.println("No existe ningún paquete con ese CODIGO."); 
+            } 
+        } catch (Exception e) { 
+            if (manager.getTransaction().isActive()) { 
+                manager.getTransaction().rollback(); 
+            } 
+            e.printStackTrace(); } finally { manager.close(); 
+        }
+    }
     //función para consultar paquetes
     public static void consultarMispaquetes(int id){
         System.out.println("------------- PAQUETES -------------");
