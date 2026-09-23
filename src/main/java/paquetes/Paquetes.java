@@ -6,6 +6,7 @@ package paquetes;
 
 import com.util.JpaUtil;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import java.util.Scanner;
 import user.Usuarios;
 import paquetes.Codigo;
@@ -44,7 +45,20 @@ public class Paquetes {
     }
     
     
-   
+    public static void consultarMispaquetes(int id){
+        System.out.println("------------- PAQUETES -------------");
+        PaquetesData paq = sqlPaquetes(id); 
+        System.out.println(paq.toString());
+    }
+    
+    public static void buscarMispaquetes(){
+        String codigo;
+        System.out.println("------------Busqueda de Codigo por paquete-------------");
+        System.out.print("Ingrese el codigo: ");
+        codigo = scan_text.next();
+        PaquetesData paq = sqlSearchPaquetes(codigo);
+        System.out.println(paq.toString()); 
+   }
     
     public static void userCreatePaquetes(PaquetesData paquetes) {
         EntityManager manager = JpaUtil.getEntityManagerFactory().createEntityManager();
@@ -63,6 +77,34 @@ public class Paquetes {
             e.printStackTrace();
 
         } finally {
+            manager.close();
+        }
+    }
+    
+    private static PaquetesData sqlSearchPaquetes(String id){
+        EntityManager manager = JpaUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            TypedQuery<PaquetesData> userQuery = manager.createQuery(
+                    "SELECT u FROM PaquetesData u WHERE u.codigo = :codigo",
+                    PaquetesData.class
+            );
+            userQuery.setParameter("codigo", id);
+            return userQuery.getResultStream().findFirst().orElse(null);
+        }finally{
+            manager.close();
+        }
+    }
+    
+    private static PaquetesData sqlPaquetes(int id){
+        EntityManager manager = JpaUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            TypedQuery<PaquetesData> userQuery = manager.createQuery(
+                    "SELECT u FROM PaquetesData u WHERE u.id_usuario = :id_usuario",
+                    PaquetesData.class
+            );
+            userQuery.setParameter("id_usuario", id);
+            return userQuery.getResultStream().findFirst().orElse(null);
+        }finally{
             manager.close();
         }
     }

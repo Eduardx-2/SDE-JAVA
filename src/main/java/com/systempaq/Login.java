@@ -31,14 +31,18 @@ public class Login {
     private static void menu_user_(int userId){
         int opciones;
         System.out.println("----------- Usuarios Menu-------------");
-        System.out.print("1- Registrar Paquetes\n2 - Ver mis Paquetes\n3 -  Buscar mi paquete\n\nSeleccióne una opción: ");
+        System.out.print("1- Registrar Paquetes\n2 - Ver mis Paquetes\n3 - Buscar mi paquete\n\nSeleccióne una opción: ");
         opciones = using_input.nextInt();
         switch(opciones){
             case 1: 
                 Paquetes.registered_data_package(userId);
                 break;
             case 2:
-                
+                Paquetes.consultarMispaquetes(userId);
+                break;
+            case 3:
+                Paquetes.buscarMispaquetes();
+                break;
         }
     }
     

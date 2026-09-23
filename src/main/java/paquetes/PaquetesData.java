@@ -136,7 +136,14 @@ public class PaquetesData implements Serializable {
         this.descripcion = descripcion;
     }
 
-   
+    @Override
+    public String toString() {
+        return "--------Paquetes Del usuario-------\n" + "\ncodigo: " + codigo + "\ndescripcion: " + descripcion + "\nlargo:" + largo + "\npeso:" + peso + "\nancho: " + ancho + "\nalto: " + alto + "\nvalor: " + valor;
+    }
+
+    
+
+    
 
     
     
