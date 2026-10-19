@@ -100,10 +100,6 @@ public class SistemaPaquetes {
         Roles rolDb = Roles.verification_asset(1); //toma un rol apartir de un numero, y asigna ese rol
         Usuarios userCreate = new Usuarios(nombre.toLowerCase(),apellido.toLowerCase(),correo,telefono,data_password,rolDb); //crea el objeto usuario
         userCreateSession(userCreate); //insertar los datos del usuario
-
-
-       
-        
         
     }
     

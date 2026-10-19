@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -35,14 +36,15 @@ public class EnviosDb implements Serializable{
     @Column(name = "estado")
     private String estado;
     @Column(name = "fecha_envio")
-    private String fecha_envio;
+    private LocalDateTime fecha_envio;
     @Column(name = "fecha_entrega")
-    private String fecha_entrega;
+    private LocalDateTime fecha_entrega;
 
     public EnviosDb(){
         
     }
-    public EnviosDb(String codigo_seguimiento, int id_paquete, int id_usuario, String destinatario, String direccion, String estado, String fecha_envio, String fecha_entrega) {
+
+    public EnviosDb(String codigo_seguimiento, int id_paquete, int id_usuario, String destinatario, String direccion, String estado, LocalDateTime fecha_envio, LocalDateTime fecha_entrega) {
         this.codigo_seguimiento = codigo_seguimiento;
         this.id_paquete = id_paquete;
         this.id_usuario = id_usuario;
@@ -52,8 +54,9 @@ public class EnviosDb implements Serializable{
         this.fecha_envio = fecha_envio;
         this.fecha_entrega = fecha_entrega;
     }
-
     
+    
+
     public int getId_envio() {
         return id_envio;
     }
@@ -110,21 +113,23 @@ public class EnviosDb implements Serializable{
         this.estado = estado;
     }
 
-    public String getFecha_envio() {
+    public LocalDateTime getFecha_envio() {
         return fecha_envio;
     }
 
-    public void setFecha_envio(String fecha_envio) {
+    public void setFecha_envio(LocalDateTime fecha_envio) {
         this.fecha_envio = fecha_envio;
     }
 
-    public String getFecha_entrega() {
+    public LocalDateTime getFecha_entrega() {
         return fecha_entrega;
     }
 
-    public void setFecha_entrega(String fecha_entrega) {
+    public void setFecha_entrega(LocalDateTime fecha_entrega) {
         this.fecha_entrega = fecha_entrega;
     }
+    
+    
     
     
     
