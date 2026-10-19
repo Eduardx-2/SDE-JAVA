@@ -35,17 +35,17 @@ public class SysDestinatarios {
         direccion = scan.nextLine();
         referencias = scan.nextLine();
         Destinatarios destin = new Destinatarios(nombre,telefono,correo,direccion,referencias,LocalDateTime.MIN,id);
-       
+        registered_destinatario(destin);
     }
     
-    private static void registered_destinario(Destinatarios destinatarios){
+    private static void registered_destinatario(Destinatarios destinatarios){
         EntityManager manager = JpaUtil.getEntityManagerFactory().createEntityManager();
         try {
             manager.getTransaction().begin();
             manager.persist(destinatarios);
             manager.getTransaction().commit();
 
-            System.out.println("Paquete Registrado");
+            System.out.println("Se agrego destinatario correctamente");
 
         } catch (Exception e) {
             if (manager.getTransaction().isActive()) {

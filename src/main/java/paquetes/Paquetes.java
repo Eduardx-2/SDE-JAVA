@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import user.Usuarios;
 import paquetes.Codigo;
-
+import destinatarios.SysDestinatarios;
 /**
  *
  * @author eduardx_2
@@ -22,6 +22,7 @@ public class Paquetes {
     
     public static void registered_data_package(int id){
         String descripcion;
+        char dest;
         float peso;
         float largo;
         float ancho;
@@ -40,6 +41,13 @@ public class Paquetes {
         alto = scan_text.nextFloat();
         System.out.println("Valor: ");
         valor = scan_text.nextFloat();
+        System.out.println("El paquete que usted ingreso necesita un destinatario, desea agregarlo? y/n: ");
+        dest = scan_text.next().charAt(0);
+        if (dest == 'y'){
+            SysDestinatarios.data_input_destinarios(id);
+        }else{
+            System.out.println("[!] Recuerde más trade agregar un destinatario."); 
+       }
         PaquetesData paquetes = new PaquetesData(id,Codigo.generateRandomCode(),descripcion,largo,peso,ancho,alto,valor);
         userCreatePaquetes(paquetes);
         
